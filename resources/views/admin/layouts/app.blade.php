@@ -43,14 +43,11 @@
 
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
 
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
     <script src="{{ asset('backend') }}/assets/vendor/js/helpers.js"></script>
 
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('backend') }}/assets/js/config.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    @stack('styles')
   </head>
 
   <body>
@@ -123,30 +120,6 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
                       <a class="dropdown-item" href="{{ route('admin.logout') }}">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
@@ -174,9 +147,7 @@
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
                   ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
+                  2024
                   , made with ❤️ by
                   <a href="https://webeesocial.com" target="_blank" class="footer-link fw-bolder">Webeesocial</a>
                 </div>
@@ -205,16 +176,33 @@
     <script src="{{ asset('backend') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="{{ asset('backend') }}/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="{{ asset('backend') }}/assets/vendor/libs/apex-charts/apexcharts.js"></script>
-
     <!-- Main JS -->
     <script src="{{ asset('backend') }}/assets/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script src="{{ asset('backend') }}/assets/js/dashboards-analytics.js"></script>
+    {{-- Toast --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    @stack('scripts')
+    @if(session()->has('alert'))
+        @php
+            $alert = Session::get('alert');
+            $toastBody = $alert['body'];
+        @endphp
+        <script>
+            $(document).ready(function() {
+              Toastify({
+                text: "{{ $toastBody }}",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function(){} // Callback after click
+              }).showToast();
+            });
+        </script>
+    @endif
 
   </body>
 </html>

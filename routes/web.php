@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CirculerController;
 
 Route::get('/', function () {
     return 'Welcome to acma fontend';
@@ -15,5 +16,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+    // circuler routes
+    Route::resource('circulers', CirculerController::class);
 
 });
