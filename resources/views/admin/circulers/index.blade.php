@@ -34,12 +34,10 @@
                             <span class="tf-icons bx bx-pencil "></span>
                         </button>
                     </a>
-                    
-                    
-                    <form action="{{ route('circulers.destroy', $circuler->id) }}" method="POST" style="display: inline-block">
+                    <form class="confirm-delete" action="{{ route('circulers.destroy', $circuler->id) }}" method="POST" style="display: inline-block">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn rounded-pill btn-icon btn-danger btn-sm">
+                        <button type="submit" class="btn rounded-pill btn-icon btn-danger btn-sm">
                             <span class="tf-icons bx bx-trash "></span>
                         </button>
                     </form>
@@ -52,3 +50,8 @@
     
   </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('backend') }}/assets/js/confirm-delete.js"></script>
+@endpush

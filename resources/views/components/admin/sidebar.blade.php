@@ -15,11 +15,7 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item
-        @if(request()->routeIs('admin.dashboard'))
-        active
-        @endif 
-      ">
+      <li class="menu-item {{ active('admin.dashboard') }}">
         <a href="{{ route('admin.dashboard') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
@@ -27,23 +23,19 @@
       </li>
 
       <!-- Layouts -->
-      <li class="menu-item
-        @if(request()->routeIs('circulers.*'))
-        active
-        @endif
-      ">
+      <li class="menu-item {{ active('circulers.*','active open') }} ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
           <div data-i18n="Layouts">Circulers</div>
         </a>
 
         <ul class="menu-sub">
-          <li class="menu-item">
+          <li class="menu-item {{ active('circulers.create')}}">
             <a href="{{route('circulers.create')}}" class="menu-link">
               <div data-i18n="Without menu">Add New</div>
             </a>
           </li>
-          <li class="menu-item">
+          <li class="menu-item {{ active('circulers.index')}}">
             <a href="{{route('circulers.index')}}" class="menu-link">
               <div data-i18n="Without navbar">View All</div>
             </a>

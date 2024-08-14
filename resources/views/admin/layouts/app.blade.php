@@ -188,6 +188,8 @@
         @endphp
         <script>
             $(document).ready(function() {
+
+              // Toast
               Toastify({
                 text: "{{ $toastBody }}",
                 duration: 3000,
@@ -198,7 +200,6 @@
                 style: {
                   background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
-                onClick: function(){} // Callback after click
               }).showToast();
             });
         </script>

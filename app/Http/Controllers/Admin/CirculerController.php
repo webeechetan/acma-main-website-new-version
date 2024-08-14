@@ -88,6 +88,13 @@ class CirculerController extends Controller
      */
     public function destroy(Circuler $circuler)
     {
-        //
+        try{
+            $circuler->delete();
+            $this->alert('Circuler deleted successfully');
+            return redirect()->route('circulers.index');
+        }catch(\Exception $e){
+            $this->alert($e->getMessage());
+            return redirect()->back();
+        }
     }
 }
