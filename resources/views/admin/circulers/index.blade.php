@@ -47,7 +47,7 @@
         </tbody>
       </table>
     </div>
-    
+    {{ $circulers->links() }}
   </div>
 @endsection
 

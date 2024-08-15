@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CirculerController;
+use App\Http\Controllers\Admin\MemberController;
 
 Route::get('/', function () {
     return 'Welcome to acma fontend';
@@ -24,5 +25,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // circuler routes
     Route::resource('circulers', CirculerController::class);
     Route::get('circulers/{circuler}/delete-attachment/{attachment}', [CirculerController::class, 'deleteAttachment'])->name('circulers.delete-attachment');
+
+    // member routes
+    Route::resource('members', MemberController::class);
 
 });

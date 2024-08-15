@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="index.html" class="app-brand-link">
+      <a href="{{route('admin.dashboard')}}" class="app-brand-link">
         <span class="app-brand-logo demo ">
             <img src="{{ asset('backend') }}/assets/img/logo.png" alt="brand-logo" height="50" />
         </span>
@@ -47,6 +47,27 @@
           </li>
           <li class="menu-item {{ active('circulers.index')}}">
             <a href="{{route('circulers.index')}}" class="menu-link">
+              <div data-i18n="Without navbar">View All</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Members -->
+      <li class="menu-item {{ active('members.*','active open') }} ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-user"></i>
+          <div data-i18n="Layouts">Members</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item {{ active('members.create')}}">
+            <a href="{{route('members.create')}}" class="menu-link">
+              <div data-i18n="Without menu">Add New</div>
+            </a>
+          </li>
+          <li class="menu-item {{ active('members.index')}}">
+            <a href="{{route('members.index')}}" class="menu-link">
               <div data-i18n="Without navbar">View All</div>
             </a>
           </li>
