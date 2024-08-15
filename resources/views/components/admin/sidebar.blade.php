@@ -22,7 +22,17 @@
         </a>
       </li>
 
-      <!-- Layouts -->
+      <!-- File Manager -->
+      <li class="menu-item {{ active('file.manager') }}">
+        <a href="{{ route('file.manager') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Analytics">File Manager</div>
+        </a>
+      </li>
+
+      
+
+      <!-- Circulers -->
       <li class="menu-item {{ active('circulers.*','active open') }} ">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>

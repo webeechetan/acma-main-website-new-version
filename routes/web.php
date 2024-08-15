@@ -17,6 +17,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
+    // file manager routes
+
+    Route::get('file-manager', [DashboardController::class, 'filemanager'])->name('file.manager');
+
     // circuler routes
     Route::resource('circulers', CirculerController::class);
     Route::get('circulers/{circuler}/delete-attachment/{attachment}', [CirculerController::class, 'deleteAttachment'])->name('circulers.delete-attachment');
