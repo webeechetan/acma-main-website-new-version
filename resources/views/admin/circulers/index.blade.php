@@ -21,8 +21,8 @@
                 <td>{{ $circuler->id }}</td>
                 <td>{{ $circuler->circuler_no }}</td>
                 <td>{{Str::limit($circuler->title, 50,'...')}}</td>
-                <td>{{ $circuler->circuler_date }}</td>
                 <td>{{ $circuler->category->name }}</td>
+                <td>{{ $circuler->circuler_date }}</td>
                 <td>
                     @foreach($circuler->key_words as $key_word)
                         <span class="badge bg-primary">{{ $key_word }}</span>

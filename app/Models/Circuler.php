@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Models\CirculerCategory;
+use App\Models\Attachment;
 
 class Circuler extends Model
 {
@@ -36,5 +37,10 @@ class Circuler extends Model
     public function category()
     {
         return $this->belongsTo(CirculerCategory::class);
+    }
+
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }

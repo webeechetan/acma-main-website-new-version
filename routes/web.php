@@ -19,5 +19,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     // circuler routes
     Route::resource('circulers', CirculerController::class);
+    Route::get('circulers/{circuler}/delete-attachment/{attachment}', [CirculerController::class, 'deleteAttachment'])->name('circulers.delete-attachment');
 
 });
