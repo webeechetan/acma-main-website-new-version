@@ -7,6 +7,7 @@ use App\Models\Circuler;
 use Illuminate\Http\Request;
 use App\Models\CirculerCategory;
 use App\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
 
 class CirculerController extends Controller
 {
@@ -140,6 +141,10 @@ class CirculerController extends Controller
     public function destroy(Circuler $circuler)
     {
         try{
+            foreach($circuler->attachments as $attachment){
+                Storage::delete($attachment->path);
+                $attachment->delete();
+            }
             $circuler->delete();
             $this->alert('Circuler deleted successfully');
             return redirect()->route('circulers.index');
@@ -152,6 +157,7 @@ class CirculerController extends Controller
     public function deleteAttachment(Circuler $circuler, Attachment $attachment)
     {
         try{
+            Storage::delete($attachment->path);
             $attachment->delete();
             $this->alert('Attachment deleted successfully');
             return redirect()->back();
