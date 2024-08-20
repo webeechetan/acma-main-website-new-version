@@ -19,6 +19,9 @@
 
     <meta name="description" content="" />
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('backend') }}/assets/img/favicon/favicon.ico" />
 
@@ -43,19 +46,11 @@
 
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
 
-
-    <!-- vendor-pro -->
-    <link rel="stylesheet" href="{{ asset('backend') }}/assets/vendor-pro/libs/animate-css/animate.css" />
-
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
     <script src="{{ asset('backend') }}/assets/vendor/js/helpers.js"></script>
 
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('backend') }}/assets/js/config.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    @stack('styles')
   </head>
 
   <body>
@@ -88,18 +83,6 @@
               </div>
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -118,34 +101,9 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
                           </div>
                         </div>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
                       </a>
                     </li>
                     <li>
@@ -179,9 +137,7 @@
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
                   ©
-                  <script>
-                    document.write(new Date().getFullYear());
-                  </script>
+                  2024
                   , made with ❤️ by
                   <a href="https://webeesocial.com" target="_blank" class="footer-link fw-bolder">Webeesocial</a>
                 </div>
@@ -210,16 +166,34 @@
     <script src="{{ asset('backend') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="{{ asset('backend') }}/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="{{ asset('backend') }}/assets/vendor/libs/apex-charts/apexcharts.js"></script>
-
     <!-- Main JS -->
     <script src="{{ asset('backend') }}/assets/js/main.js"></script>
+    {{-- Toast --}}
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    @stack('scripts')
+    @if(session()->has('alert'))
+        @php
+            $alert = Session::get('alert');
+            $toastBody = $alert['body'];
+        @endphp
+        <script>
+            $(document).ready(function() {
 
-    <!-- Page JS -->
-    <script src="{{ asset('backend') }}/assets/js/dashboards-analytics.js"></script>
+              // Toast
+              Toastify({
+                text: "{{ $toastBody }}",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+              }).showToast();
+            });
+        </script>
+    @endif
 
   </body>
 </html>
