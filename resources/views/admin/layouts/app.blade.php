@@ -43,6 +43,11 @@
 
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
 
+
+    <!-- vendor-pro -->
+    <link rel="stylesheet" href="{{ asset('backend') }}/assets/vendor-pro/libs/animate-css/animate.css" />
+
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
