@@ -95,5 +95,22 @@
         </ul>
       </li>
 
+      <!-- ECMinutes -->
+
+      <li class="menu-item {{ active('ecminutes.index') }}">
+        <a href="{{ route('ecminutes.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Analytics">EcMinute</div>
+        </a>
+      </li>
+
+      <!-- All Doc -->
+
+      <li class="menu-item {{ active('alldocs.index') }}">
+        <a href="{{ route('alldocs.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Analytics">All Docs</div>
+        </a>
+      </li>
     </ul>
   </aside>
