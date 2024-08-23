@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\EcMinute;
-use App\Models\Attachment;
+use App\Models\Alldoc;
 use Illuminate\Http\Request;
+use App\Models\Attachment;
+use Illuminate\Support\Facades\Storage;
 
-class EcMinuteController extends Controller
+class AlldocController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $ecminutes = EcMinute::paginate(10);
-        return view('admin.ecminutes.index', compact('ecminutes'));
+        $alldocs = Alldoc::paginate(10);
+        return view('admin.alldocs.index', compact('alldocs'));
     }
 
     /**
@@ -31,47 +32,43 @@ class EcMinuteController extends Controller
      */
     public function store(Request $request)
     {
-
-
+       
         $request->validate([
             'title' => 'required',
-            'upload_date' => 'required',
         ]);
-
-
-        $ecminute = new EcMinute();
-
-        $ecminute->title = $request->title;
-        $ecminute->upload_date = $request->upload_date;
-       
+      
+        $alldoc = new Alldoc();
+        $alldoc->title = $request->title;       
+              
         try{
-            $ecminute->save();
-            if($request->hasFile('ec_attachment')){
-                $file = $request->file('ec_attachment');
-                $path = $file->store('ecminutes');
+            $alldoc->save();
+            //saving attachment
+            if($request->hasFile('doc_attachment')){
+
+
+                $file = $request->file('doc_attachment');
+                $path = $file->store('alldocs');
 
                 $attachment = new Attachment();
                 $attachment->name = $file->getClientOriginalName();
                 $attachment->path = $path;
-                $attachment->attachable_id = $ecminute->id;
-                $attachment->attachable_type = 'App\Models\EcMinute';
+                $attachment->attachable_id = $alldoc->id;
+                $attachment->attachable_type = 'App\Models\Alldoc';
                 $attachment->save();
-
-
             }
-            $this->alert('Ecminutes created successfully');
-            return redirect()->route('ecminutes.index');
+           
+            $this->alert('Doc created successfully');
+            return redirect()->route('alldocs.index');
         }catch(\Exception $e){
             $this->alert($e->getMessage());
             return redirect()->back();
         }
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(EcMinute $ecMinute)
+    public function show(Alldoc $alldoc)
     {
         //
     }
@@ -79,7 +76,7 @@ class EcMinuteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EcMinute $ecMinute)
+    public function edit(Alldoc $alldoc)
     {
         //
     }
@@ -87,7 +84,7 @@ class EcMinuteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EcMinute $ecMinute)
+    public function update(Request $request, Alldoc $alldoc)
     {
         //
     }
@@ -95,13 +92,13 @@ class EcMinuteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EcMinute $ecMinute)
+    public function destroy(Alldoc $alldoc)
     {
-
+    
         try{
-            $ecMinute->delete();
-            $this->alert('Ecminute deleted successfully');
-            return redirect()->route('ecminutes.index');
+            $alldoc->delete();
+            $this->alert('Doc deleted successfully');
+            return redirect()->route('alldocs.index');
         }catch(\Exception $e){
             $this->alert($e->getMessage());
             return redirect()->back();

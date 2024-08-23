@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ec_minutes', function (Blueprint $table) {
+        Schema::create('press_releases', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
-            $table->date('upload_date');
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ec_minutes');
+        Schema::dropIfExists('press_releases');
     }
 };

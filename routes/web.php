@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CirculerController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\EcMinuteController;
+use App\Http\Controllers\Admin\AlldocController;
+use App\Http\Controllers\Admin\PressCoverageController;
+use App\Http\Controllers\Admin\PressReleaseController;
 
 Route::get('/', function () {
     return 'Welcome to acma fontend';
@@ -28,4 +32,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // member routes
     Route::resource('members', MemberController::class);
 
+    //EC minute route
+
+
+   
+    Route::get('ecminutes', [EcMinuteController::class, 'index'])->name('ecminutes.index');
+    Route::post('ecminutes/store', [EcMinuteController::class, 'store'])->name('ecminutes.store');
+    Route::delete('ecminutes/{ecMinute}', [EcMinuteController::class, 'destroy'])->name('ecminutes.destroy');
+
+    // All docs
+    Route::resource('alldocs', AlldocController::class);
+
+     // Press Coverage
+     Route::resource('presscoverage', AlldocController::class);
+
+      // Press Release
+    Route::resource('pressrelease', AlldocController::class);
+    
 });
