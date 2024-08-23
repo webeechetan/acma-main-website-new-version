@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('circuler_categories', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->unsignedBigInteger('category_id');
+            $table->string('title');
+            $table->date('date');
+            $table->boolean('status')->default(1)->comment('0=Inactive, 1=Active');
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('circuler_categories');
+        Schema::dropIfExists('galleries');
     }
 };

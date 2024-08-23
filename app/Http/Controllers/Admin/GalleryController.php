@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Circuler;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
-use App\Models\CirculerCategory;
+use App\Models\Category;
 use App\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 
-class CirculerController extends Controller
+
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $circulers = Circuler::paginate(10);
-        return view('admin.circulers.index', compact('circulers'));
+        $galleries = Gallery::all();
+        return view('admin.galleries.index', compact('galleries'));
     }
 
     /**
@@ -25,8 +26,8 @@ class CirculerController extends Controller
      */
     public function create()
     {
-        $categories = Circuler::categories();
-        return view('admin.circulers.create', compact('categories'));
+        $categories = Gallery::categories();
+        return view('admin.galleries.create', compact('categories'));
     }
 
     /**
@@ -34,40 +35,34 @@ class CirculerController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
-            'circuler_no' => 'required',
             'title' => 'required',
-            'description' => 'required',
             'category_id' => 'required',
-            'circuler_date' => 'required|date',
+            'date' => 'required|date',
         ]);
 
-        $circuler = new Circuler();
-        $circuler->circuler_no = $request->circuler_no;
-        $circuler->title = $request->title;
-        $circuler->description = $request->description;
-        $circuler->category_id = $request->category_id;
-        $circuler->keywords = $request->key_words;
-        $circuler->circuler_date = $request->circuler_date;
+        $gallery = new Gallery();
+        $gallery->title = $request->title;
+        $gallery->category_id = $request->category_id;
+        $gallery->date = $request->date;
 
         try{
-            $circuler->save();
+            $gallery->save();
             // save attachment
             if($request->hasFile('attachments')){
                 foreach($request->file('attachments') as $file){
-                    $path = $file->store('circulers');
+                    $path = $file->store('galleries');
                     $attachment = new Attachment();
                     $attachment->name = $file->getClientOriginalName();
                     $attachment->path = $path;
-                    $attachment->attachable_id = $circuler->id;
-                    $attachment->attachable_type = 'App\Models\Circuler';
+                    $attachment->attachable_id = $gallery->id;
+                    $attachment->attachable_type = 'App\Models\Gallery';
                     $attachment->save();
                 }
             }
 
-            $this->alert('Circuler saved successfully');
-            return redirect()->route('circulers.index');
+            $this->alert('Gallery Created Successfully');
+            return redirect()->route('galleries.index');
         }catch(\Exception $e){
             $this->alert($e->getMessage());
             return redirect()->back();
@@ -78,7 +73,7 @@ class CirculerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Circuler $circuler)
+    public function show(Gallery $gallery)
     {
         //
     }
@@ -86,49 +81,44 @@ class CirculerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Circuler $circuler)
+    public function edit(Gallery $gallery)
     {
-        $categories = Circuler::categories();
-        return view('admin.circulers.edit', compact('circuler', 'categories'));
+        $categories = Gallery::categories();
+        return view('admin.galleries.edit', compact('gallery', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Circuler $circuler)
+    public function update(Request $request, Gallery $gallery)
     {
         $request->validate([
-            'circuler_no' => 'required',
             'title' => 'required',
-            'description' => 'required',
             'category_id' => 'required',
-            'circuler_date' => 'required|date',
+            'date' => 'required|date',
         ]);
 
-        $circuler->circuler_no = $request->circuler_no;
-        $circuler->title = $request->title;
-        $circuler->description = $request->description;
-        $circuler->category_id = $request->category_id;
-        $circuler->keywords = $request->key_words;
-        $circuler->circuler_date = $request->circuler_date;
+        $gallery->title = $request->title;
+        $gallery->category_id = $request->category_id;
+        $gallery->date = $request->date;
 
         try{
-            $circuler->save();
+            $gallery->save();
             // save attachment
             if($request->hasFile('attachments')){
                 foreach($request->file('attachments') as $file){
-                    $path = $file->store('circulers');
+                    $path = $file->store('galleries');
                     $attachment = new Attachment();
                     $attachment->name = $file->getClientOriginalName();
                     $attachment->path = $path;
-                    $attachment->attachable_id = $circuler->id;
-                    $attachment->attachable_type = 'App\Models\Circuler';
+                    $attachment->attachable_id = $gallery->id;
+                    $attachment->attachable_type = 'App\Models\Gallery';
                     $attachment->save();
                 }
             }
 
-            $this->alert('Circuler updated successfully');
-            return redirect()->route('circulers.index');
+            $this->alert('Gallery Updated Successfully');
+            return redirect()->route('galleries.index');
         }catch(\Exception $e){
             $this->alert($e->getMessage());
             return redirect()->back();
@@ -138,23 +128,31 @@ class CirculerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Circuler $circuler)
+    public function destroy(Gallery $gallery)
     {
         try{
-            foreach($circuler->attachments as $attachment){
+            foreach($gallery->attachments as $attachment){
                 Storage::delete($attachment->path);
                 $attachment->delete();
-            }
-            $circuler->delete();
-            $this->alert('Circuler deleted successfully');
-            return redirect()->route('circulers.index');
+            }            
+            $gallery->delete();
+            $this->alert('Gallery Deleted Successfully');
+            return redirect()->route('galleries.index');
         }catch(\Exception $e){
             $this->alert($e->getMessage());
             return redirect()->back();
         }
     }
 
-    public function deleteAttachment(Circuler $circuler, Attachment $attachment)
+    public function changeStatus(Request $request)
+    {
+        $gallery = Gallery::find($request->id);
+        $gallery->status = $request->status;
+        $gallery->save();
+        return response()->json(['status' => 1, 'message' => 'Status Changed Successfully']);
+    }
+
+    public function deleteAttachment(Attachment $attachment)
     {
         try{
             Storage::delete($attachment->path);

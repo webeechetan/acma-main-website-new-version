@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CirculerController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\GalleryController;
 
 Route::get('/', function () {
     return 'Welcome to acma fontend';
@@ -28,5 +29,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     // member routes
     Route::resource('members', MemberController::class);
+
+    // gallery routes
+    Route::resource('galleries', GalleryController::class);
+    Route::get('gallery/delete-attachment/{attachment}', [GalleryController::class, 'deleteAttachment'])->name('gallery.delete-attachment');
+    Route::post('galleries.change-status', [GalleryController::class, 'changeStatus'])->name('galleries.change-status');
 
 });

@@ -74,5 +74,26 @@
         </ul>
       </li>
 
+       <!-- Gallery -->
+       <li class="menu-item {{ active('galleries.*','active open') }} ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-image"></i>
+          <div data-i18n="Layouts">Gallery</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item {{ active('galleries.create')}}">
+            <a href="{{route('galleries.create')}}" class="menu-link">
+              <div data-i18n="Without menu">Add New</div>
+            </a>
+          </li>
+          <li class="menu-item {{ active('galleries.index')}}">
+            <a href="{{route('galleries.index')}}" class="menu-link">
+              <div data-i18n="Without navbar">View All</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
     </ul>
   </aside>
