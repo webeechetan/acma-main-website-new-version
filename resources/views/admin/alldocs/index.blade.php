@@ -6,17 +6,11 @@
 
 <div class="card">
 
-  <h5 class="card-header">All Docs List</h5>
-
-
-  <div class="container d-flex justify-content-end">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_alldocs_modal">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">All Docs List</h5> <small class="text-body float-end"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_alldocs_modal">
       Add All Doc
-    </button>
+    </button></small>
   </div>
-
-
   
   <div class="table-responsive text-nowrap"> 
     <table class="table">
@@ -33,8 +27,7 @@
           <tr>
             <td><span>{{ $alldoc->id }}</span></td>
             <td><span>{{ $alldoc->title }} </span></td>
-            {{-- <td><span>{{ $alldoc->id }} </span></td> --}}
-            <td><span>{{ env('APP_URL') . '/' . $alldoc->title }}</span></td>
+            <td><span>{{ env('APP_URL') . '/storage/' . $alldoc->attachment }}</span></td>
             <td>         
               <form class="confirm-delete" action="{{ route('alldocs.destroy', $alldoc->id) }}" method="POST" style="display: inline-block">
                 @csrf

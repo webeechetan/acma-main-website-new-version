@@ -2,13 +2,12 @@
 @section('content')
 
 <div class="card">
-  <h5 class="card-header">EC-Minute List</h5>
-  <div class="container d-flex justify-content-end">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_ecminute_modal">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">EC-Minute List</h5> <small class="text-body float-end"> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_ecminute_modal">
       Add Minutes
-    </button>
+    </button></small>
   </div>
+  
   
   <div class="table-responsive text-nowrap"> 
     <table class="table">
@@ -27,6 +26,7 @@
             <td><span>{{ $ecminute->id }}</span></td>
             <td><span>{{ $ecminute->title }} </span></td>
             <td> {{ $ecminute->upload_date}} </td>
+           
             <td>
               <a href="{{ env('APP_URL') }}/storage/{{ $ecminute->attachment->path }}">{{ $ecminute->attachment->name }}</a>
             </td>
