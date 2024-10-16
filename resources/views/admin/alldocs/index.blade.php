@@ -11,7 +11,7 @@
       Add All Doc
     </button></small>
   </div>
-  
+
   <div class="table-responsive text-nowrap"> 
     <table class="table">
       <thead>
@@ -24,10 +24,13 @@
       </thead>
       <tbody class="table-border-bottom-0">
         @foreach($alldocs as $alldoc)
+
+        {{-- {{json_encode($alldoc->attachment)}} --}}
+        
           <tr>
             <td><span>{{ $alldoc->id }}</span></td>
-            <td><span>{{ $alldoc->title }} </span></td>
-            <td><span>{{ env('APP_URL') . '/storage/' . $alldoc->attachment }}</span></td>
+            <td><span>{{ $alldoc->title }}</span></td>
+            <td><span>{{ env('APP_URL')}}/storage/{{ $alldoc->attachment->path }}</span></td>
             <td>         
               <form class="confirm-delete" action="{{ route('alldocs.destroy', $alldoc->id) }}" method="POST" style="display: inline-block">
                 @csrf

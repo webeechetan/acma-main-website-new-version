@@ -32,15 +32,12 @@ class EcMinuteController extends Controller
     public function store(Request $request)
     {
 
-
         $request->validate([
             'title' => 'required',
             'upload_date' => 'required',
         ]);
 
-
         $ecminute = new EcMinute();
-
         $ecminute->title = $request->title;
         $ecminute->upload_date = $request->upload_date;
        
@@ -56,7 +53,6 @@ class EcMinuteController extends Controller
                 $attachment->attachable_id = $ecminute->id;
                 $attachment->attachable_type = 'App\Models\EcMinute';
                 $attachment->save();
-
 
             }
             $this->alert('Ecminutes created successfully');
@@ -98,6 +94,7 @@ class EcMinuteController extends Controller
     public function destroy(EcMinute $ecMinute)
     {
 
+        dd($ecMinute);
         try{
             $ecMinute->delete();
             $this->alert('Ecminute deleted successfully');

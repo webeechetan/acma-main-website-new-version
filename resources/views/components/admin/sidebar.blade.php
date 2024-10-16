@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <a href="{{route('admin.dashboard')}}" class="app-brand-link">
+      <a href="{{ route('admin.dashboard')}}" class="app-brand-link">
         <span class="app-brand-logo demo ">
             <img src="{{ asset('backend') }}/assets/img/logo.png" alt="brand-logo" height="50" />
         </span>
@@ -15,12 +15,23 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item {{ active('admin.dashboard') }}">
+      {{-- <li class="menu-item {{ active('admin.dashboard') }}">
         <a href="{{ route('admin.dashboard') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
         </a>
+      </li> --}}
+
+      
+      <!-- ECMinutes -->
+
+      <li class="menu-item {{ active('ecminutes.index') }}">
+        <a href="{{ route('ecminutes.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-file"></i>
+          <div data-i18n="Analytics">EcMinute</div>
+        </a>
       </li>
+
 
       <!-- File Manager -->
       <li class="menu-item {{ active('file.manager') }}">
@@ -62,12 +73,12 @@
 
         <ul class="menu-sub">
           <li class="menu-item {{ active('members.create')}}">
-            <a href="{{route('members.create')}}" class="menu-link">
+            <a href="{{ route('members.create')}}" class="menu-link">
               <div data-i18n="Without menu">Add New</div>
             </a>
           </li>
           <li class="menu-item {{ active('members.index')}}">
-            <a href="{{route('members.index')}}" class="menu-link">
+            <a href="{{ route('members.index')}}" class="menu-link">
               <div data-i18n="Without navbar">View All</div>
             </a>
           </li>
@@ -83,33 +94,42 @@
 
         <ul class="menu-sub">
           <li class="menu-item {{ active('galleries.create')}}">
-            <a href="{{route('galleries.create')}}" class="menu-link">
+            <a href="{{ route('galleries.create')}}" class="menu-link">
               <div data-i18n="Without menu">Add New</div>
             </a>
           </li>
           <li class="menu-item {{ active('galleries.index')}}">
-            <a href="{{route('galleries.index')}}" class="menu-link">
+            <a href="{{ route('galleries.index')}}" class="menu-link">
               <div data-i18n="Without navbar">View All</div>
             </a>
           </li>
         </ul>
       </li>
 
-      <!-- ECMinutes -->
-
-      <li class="menu-item {{ active('ecminutes.index') }}">
-        <a href="{{ route('ecminutes.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-file"></i>
-          <div data-i18n="Analytics">EcMinute</div>
-        </a>
-      </li>
-
       <!-- All Doc -->
 
       <li class="menu-item {{ active('alldocs.index') }}">
         <a href="{{ route('alldocs.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-file"></i>
+          <i class="menu-icon tf-icons bx bx-folder-open"></i>
           <div data-i18n="Analytics">All Docs</div>
+        </a>
+      </li>
+      
+      <!-- Press Release -->
+
+      <li class="menu-item {{ active('pressreleases.index')}}">
+        <a href="{{ route('pressreleases.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-news"></i>
+          <div data-i18n="Analytics">Press Release</div>
+        </a>
+      </li>
+
+      <!-- Press Coverage Doc -->
+
+      <li class="menu-item {{ active('presscoverages.index') }}">
+        <a href="{{ route('presscoverages.index')}}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-comment-add"></i>
+          <div data-i18n="Analytics">Press Coverage</div>
         </a>
       </li>
     </ul>

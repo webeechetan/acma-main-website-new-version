@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('press_releases', function (Blueprint $table) {
+        Schema::create('doc_managers', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->date('upload_date');
+            $table->string('folder');
+            $table->string('year');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('press_releases');
+        Schema::dropIfExists('doc_managers');
     }
 };

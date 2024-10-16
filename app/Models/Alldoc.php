@@ -10,9 +10,10 @@ class Alldoc extends Model
 {
     use HasFactory;
 
-    public function attachments()
+    public function attachment()
     {
-        return $this->morphMany(Attachment::class, 'attachable');
+        // return $this->morphMany(Attachment::class, 'attachable');
+        return $this->morphOne(Attachment::class, 'attachable');
     }
 
 }

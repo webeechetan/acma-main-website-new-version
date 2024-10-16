@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\EcMinuteController;
 use App\Http\Controllers\Admin\AlldocController;
 use App\Http\Controllers\Admin\PressCoverageController;
 use App\Http\Controllers\Admin\PressReleaseController;
+use App\Http\Controllers\Admin\DocManagerController;
 
 Route::get('/', function () {
     return 'Welcome to acma fontend';
@@ -46,9 +47,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('alldocs', AlldocController::class);
 
     // Press Coverage
-    Route::resource('presscoverage', AlldocController::class);
+    Route::resource('presscoverages', PressCoverageController::class);
 
     // Press Release
-    Route::resource('pressrelease', AlldocController::class);
-    
+    Route::resource('pressreleases', PressReleaseController::class);
+
+    //Doc Manager
+    Route::resource('docmanagers', DocManagerController::class);
 });

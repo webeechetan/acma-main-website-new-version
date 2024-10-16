@@ -3,11 +3,10 @@
 
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
-    <h5 class="mb-0">EC-Minute List</h5> <small class="text-body float-end"> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_ecminute_modal">
-      Add Minutes
+    <h5 class="mb-0">Press Releases</h5> <small class="text-body float-end"> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_press_release_modal">
+      Add Press Release
     </button></small>
   </div>
-  
   
   <div class="table-responsive text-nowrap"> 
     <table class="table">
@@ -21,22 +20,24 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @foreach($ecminutes as $ecminute)
-        {{-- {{ json_encode($ecminute->attachment->path)}} --}}
+        @foreach($pressreleases as $pressrelease)
+
+        {{-- {{json_encode($pressrelease->attachment)}} --}}
+
+
           <tr>
-            <td><span>{{ $ecminute->id }}</span></td>
-            <td><span>{{ $ecminute->title }} </span></td>
-            <td>{{ $ecminute->upload_date}}</td>
+            <td><span>{{ $pressrelease->id }}</span></td>
+            <td><span>{{ $pressrelease->title }} </span></td>
+            <td> {{ $pressrelease->upload_date}} </td>
+           
             <td>
-                <a href="{{ env('APP_URL') }}/storage/{{ $ecminute->attachment->path }}">
-                    <img alt="img1" src="{{ asset('storage/' . $ecminute->attachment->path) }}" height="100" width="100" />
-                </a>
+              <a href="{{ env('APP_URL') }}/storage/{{ $pressrelease->attachment->path }}">{{ $pressrelease->attachment->name }}</a>
             </td>
             <td>         
-              <button type="button" class="btn rounded-pill btn-icon btn-primary btn-sm edit_ecminute"  data-bs-toggle="modal" data-bs-target="#edit_ecminute_modal" data-id="{{ $ecminute->id }}" data-title="{{ $ecminute->title }}" data-upload-date="{{ $ecminute->upload_date }}">
+              <button type="button" class="btn rounded-pill btn-icon btn-primary btn-sm edit_ecminute"  data-bs-toggle="modal" data-bs-target="#add_press_release_modal" data-id="{{ $pressrelease->id }}" data-title="{{ $pressrelease->title }}" data-upload-date="{{ $pressrelease->upload_date }}">
                 <span class="tf-icons bx bx-pencil "></span>
               </button>
-              <form class="confirm-delete" action="{{ route('ecminutes.destroy', $ecminute) }}" method="POST" style="display: inline-block">
+              <form class="confirm-delete" action="{{ route('pressreleases.destroy', $pressrelease) }}" method="POST" style="display: inline-block">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn rounded-pill btn-icon btn-danger btn-sm">
@@ -52,17 +53,17 @@
 </div>
 
 <!-- Modal -->
-<div class="modal animate__animated animate__flipInX" id="edit_ecminute_modal" tabindex="-1" aria-labelledby="flipInXAnimationModalLabel" aria-hidden="true">
+<div class="modal animate__animated animate__flipInX" id="add_press_release_modal" tabindex="-1" aria-labelledby="flipInXAnimationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Minutes</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Press Release</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
         </button>
       </div>
 
-      <form method="POST" action="{{ route('ecminutes.store') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('pressreleases.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
           <div class="row">
@@ -79,7 +80,7 @@
           
             <div class="mb-3 col mb-0">
               <label for="formFile" class="form-label">Attachement</label>
-              <input class="form-control" type="file" name="ec_attachment" id="ec_attachment">
+              <input class="form-control" type="file" name="press_release_attachment" id="press_release_attachment">
             </div>
 
             <div class="mb-3 col mb-0">
@@ -116,13 +117,10 @@
               let id = $(this).data("id");       
               let title = $(this).data("title");
               let upload_date = $(this).data("upload-date");
-              let ec_attachment = $(this).data("upload-attachment");
            
               $('#id').val(id);
               $('#title').val(title);
               $('#upload_date').val(upload_date);
-              $('#ec_attachment').val(ec_attachment);
- 
           });
       });
     </script>
