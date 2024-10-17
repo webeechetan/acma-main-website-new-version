@@ -28,8 +28,10 @@
             <td><span>{{ $ecminute->title }} </span></td>
             <td>{{ $ecminute->upload_date}}</td>
             <td>
-                <a href="{{ env('APP_URL') }}/storage/{{ $ecminute->attachment->path }}">
-                    <img alt="img1" src="{{ asset('storage/' . $ecminute->attachment->path) }}" height="100" width="100" />
+             
+            
+                <a href="{{ env('APP_URL') }}/storage/{{ $ecminute->attachment?->path }}">
+                    <img alt="img1" src="{{ asset('storage/' . $ecminute->attachment?->path ) }}" height="100" width="100" /> 
                 </a>
             </td>
             <td>         

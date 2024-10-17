@@ -11,9 +11,14 @@ use App\Http\Controllers\Admin\AlldocController;
 use App\Http\Controllers\Admin\PressCoverageController;
 use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Admin\DocManagerController;
+use App\Http\Controllers\Admin\EventMasterController;
+
+// Route::get('/', function () {
+//     return 'Welcome to acma fontend';
+// });
 
 Route::get('/', function () {
-    return 'Welcome to acma fontend';
+    return view('frontend.about-us');
 });
 
 Route::get('/admin/login', [AuthController::class, 'login'])->name('admin.login');
@@ -54,4 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     //Doc Manager
     Route::resource('docmanagers', DocManagerController::class);
+
+    //Event Master 
+    Route::resource('eventmasters', EventMasterController::class);
 });

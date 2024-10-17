@@ -28,7 +28,7 @@
             <td> {{ $presscoverage->upload_date}} </td>
            
             <td>
-              {{-- <a href="{{ env('APP_URL') }}/storage/{{ $presscoverage->attachment->path }}">{{ $presscoverage->attachment->name }}</a> --}}
+              <a href="{{ env('APP_URL') }}/storage/{{ $presscoverage->attachment->path }}">{{ $presscoverage->attachment->name }}</a>
             </td>
             <td>         
               <button type="button" class="btn rounded-pill btn-icon btn-primary btn-sm edit_ecminute"  data-bs-toggle="modal" data-bs-target="#add_press_coverage_modal" data-id="{{ $presscoverage->id }}" data-title="{{ $presscoverage->title }}" data-upload-date="{{ $presscoverage->upload_date }}" data-description={{ $presscoverage->description}} data-link = "{{ $presscoverage->link}}">

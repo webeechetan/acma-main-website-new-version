@@ -93,8 +93,6 @@ class EcMinuteController extends Controller
      */
     public function destroy(EcMinute $ecMinute)
     {
-
-        dd($ecMinute);
         try{
             $ecMinute->delete();
             $this->alert('Ecminute deleted successfully');

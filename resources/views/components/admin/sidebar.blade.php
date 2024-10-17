@@ -132,5 +132,27 @@
           <div data-i18n="Analytics">Press Coverage</div>
         </a>
       </li>
+
+        <!-- Gallery -->
+        <li class="menu-item {{ active('eventmasters.*','active open') }} ">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-image"></i>
+            <div data-i18n="Layouts">Event Master</div>
+          </a>
+  
+          <ul class="menu-sub">
+            <li class="menu-item" {{ active('eventmasters.create') }}>
+              <a href="{{ route('eventmasters.create')}}" class="menu-link">
+                <div data-i18n="Without menu">New Event</div>
+              </a>
+            </li>
+            <li class="menu-item" {{ active('eventmasters.index') }}>
+              <a href="{{ route('eventmasters.index')}}" class="menu-link">
+                <div data-i18n="Without navbar">View Event</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+  
     </ul>
   </aside>
