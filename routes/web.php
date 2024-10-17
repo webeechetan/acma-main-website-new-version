@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\EcMinuteController;
 use App\Http\Controllers\Admin\AlldocController;
 use App\Http\Controllers\Admin\PressCoverageController;
 use App\Http\Controllers\Admin\PressReleaseController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\PublicationController;
 
 Route::get('/', function () {
     return 'Welcome to acma fontend';
@@ -50,5 +52,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     // Press Release
     Route::resource('pressrelease', AlldocController::class);
+
+    // Slider routes
+    Route::resource('sliders', SliderController::class);
+
+    // Publications routes
+    Route::resource('publications', PublicationController::class);
     
 });

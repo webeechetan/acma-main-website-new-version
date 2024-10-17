@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class CirculerCategorySeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class CirculerCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'all',
+            'All',
             'CMVR Regulations',
             'Eastern Region',
             'Executive Committee',
@@ -28,8 +29,9 @@ class CirculerCategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            \App\Models\CirculerCategory::create([
-                'name' => $category
+            Category::create([
+                'name' => $category,
+                'categorizable_type' => 'App\Models\Circuler'
             ]);
         }
         

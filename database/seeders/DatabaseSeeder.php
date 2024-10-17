@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             CirculerCategorySeeder::class,
+            PublicationCategorySeeder::class,
+            GalleryCategorySeeder::class,
         ]);
     }
 }
