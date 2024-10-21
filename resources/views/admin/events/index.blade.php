@@ -27,12 +27,14 @@
                 <td>{{ strip_tags($event->location) }}</td>
                 <td>{{ $event->event_date}}</td>
                 <td>
-                    <a href="" >
+
+
+                    <a href="{{ route('event_masters.edit', $event->id)}}" >
                         <button type="button" class="btn rounded-pill btn-icon btn-primary btn-sm">
                             <span class="tf-icons bx bx-pencil "></span>
                         </button>
                     </a>
-                    <form class="confirm-delete" action="{{ route('eventmasters.destroy', $event->id) }}" method="POST" style="display: inline-block">
+                    <form class="confirm-delete" action="{{ route('event_masters.destroy', $event->id) }}" method="POST" style="display: inline-block">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn rounded-pill btn-icon btn-danger btn-sm">

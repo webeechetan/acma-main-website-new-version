@@ -61,5 +61,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('docmanagers', DocManagerController::class);
 
     //Event Master 
-    Route::resource('eventmasters', EventMasterController::class);
+    Route::resource('event_masters', EventMasterController::class);
 });

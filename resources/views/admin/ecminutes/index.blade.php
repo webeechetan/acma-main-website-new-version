@@ -68,7 +68,6 @@
         @csrf
         <div class="modal-body">
           <div class="row">
-          
             <div class="mb-3 col">
               <label for="nameFlipInX" class="form-label">Title</label>
               <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}" placeholder="Enter Title">

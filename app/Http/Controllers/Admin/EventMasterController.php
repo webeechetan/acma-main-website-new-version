@@ -87,7 +87,14 @@ class EventMasterController extends Controller
      */
     public function edit(EventMaster $eventMaster)
     {
-        //
+
+        dd($eventMaster);
+       
+        $categories = EventMaster::categories();
+
+        // dd($categories);
+        dd($eventMaster);
+        return view('admin.events.edit',compact('categories','eventMaster'));
     }
 
     /**
@@ -103,6 +110,15 @@ class EventMasterController extends Controller
      */
     public function destroy(EventMaster $eventMaster)
     {
-        dd('deleting');
+
+       
+        try{
+            $eventMaster->delete();
+            $this->alert('Event deleted successfully');
+            return redirect()->route('event_masters.index');
+        }catch(\Exception $e){
+            $this->alert($e->getMessage());
+            return redirect()->back();
+        }
     }
 }
