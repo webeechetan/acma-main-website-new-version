@@ -32,7 +32,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{  asset('backend') }}/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="https://www.acma.in/img/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

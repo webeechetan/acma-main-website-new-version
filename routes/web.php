@@ -12,9 +12,15 @@ use App\Http\Controllers\Admin\PressCoverageController;
 use App\Http\Controllers\Admin\PressReleaseController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PublicationController;
+use App\Http\Controllers\Admin\DocManagerController;
+use App\Http\Controllers\Admin\EventMasterController;
+
+// Route::get('/', function () {
+//     return 'Welcome to acma fontend';
+// });
 
 Route::get('/', function () {
-    return 'Welcome to acma fontend';
+    return view('frontend.about-us');
 });
 
 Route::get('/admin/login', [AuthController::class, 'login'])->name('admin.login');
@@ -48,7 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('alldocs', AlldocController::class);
 
     // Press Coverage
-    Route::resource('presscoverage', AlldocController::class);
+    Route::resource('presscoverages', PressCoverageController::class);
 
     // Press Release
     Route::resource('pressrelease', AlldocController::class);
@@ -59,4 +65,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Publications routes
     Route::resource('publications', PublicationController::class);
     
+    Route::resource('pressreleases', PressReleaseController::class);
+
+    //Doc Manager
+    Route::resource('docmanagers', DocManagerController::class);
+
+    //Event Master 
+    Route::resource('eventmasters', EventMasterController::class);
 });

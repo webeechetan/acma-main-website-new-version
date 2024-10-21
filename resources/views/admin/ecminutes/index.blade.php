@@ -22,19 +22,23 @@
       </thead>
       <tbody class="table-border-bottom-0">
         @foreach($ecminutes as $ecminute)
+        {{-- {{ json_encode($ecminute->attachment->path)}} --}}
           <tr>
             <td><span>{{ $ecminute->id }}</span></td>
             <td><span>{{ $ecminute->title }} </span></td>
-            <td> {{ $ecminute->upload_date}} </td>
-           
+            <td>{{ $ecminute->upload_date}}</td>
             <td>
-              <a href="{{ env('APP_URL') }}/storage/{{ $ecminute->attachment->path }}">{{ $ecminute->attachment->name }}</a>
+             
+            
+                <a href="{{ env('APP_URL') }}/storage/{{ $ecminute->attachment?->path }}">
+                    <img alt="img1" src="{{ asset('storage/' . $ecminute->attachment?->path ) }}" height="100" width="100" /> 
+                </a>
             </td>
             <td>         
               <button type="button" class="btn rounded-pill btn-icon btn-primary btn-sm edit_ecminute"  data-bs-toggle="modal" data-bs-target="#edit_ecminute_modal" data-id="{{ $ecminute->id }}" data-title="{{ $ecminute->title }}" data-upload-date="{{ $ecminute->upload_date }}">
                 <span class="tf-icons bx bx-pencil "></span>
               </button>
-              <form class="confirm-delete" action="{{ route('ecminutes.destroy', $ecminute->id) }}" method="POST" style="display: inline-block">
+              <form class="confirm-delete" action="{{ route('ecminutes.destroy', $ecminute) }}" method="POST" style="display: inline-block">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn rounded-pill btn-icon btn-danger btn-sm">
@@ -114,10 +118,13 @@
               let id = $(this).data("id");       
               let title = $(this).data("title");
               let upload_date = $(this).data("upload-date");
+              let ec_attachment = $(this).data("upload-attachment");
            
               $('#id').val(id);
               $('#title').val(title);
               $('#upload_date').val(upload_date);
+              $('#ec_attachment').val(ec_attachment);
+ 
           });
       });
     </script>

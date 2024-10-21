@@ -21,7 +21,9 @@ class AuthController extends Controller
         ]);
 
         if (auth()->attempt($credentials)) {
-            return redirect()->route('admin.dashboard');
+            // return redirect()->route('admin.dashboard');
+            return redirect()->route('ecminutes.index');
+            
         }
 
         return back()->withErrors([

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PressRelease;
+use App\Models\Attachment;
 use Illuminate\Http\Request;
 
 class PressReleaseController extends Controller
@@ -13,7 +14,8 @@ class PressReleaseController extends Controller
      */
     public function index()
     {
-        //
+        $pressreleases = PressRelease::paginate(10);
+        return view('admin.pressreleases.index', compact('pressreleases'));
     }
 
     /**
@@ -29,7 +31,35 @@ class PressReleaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'upload_date' => 'required',
+        ]);
+
+        $pressrelease = new PressRelease();
+        $pressrelease->title = $request->title;
+        $pressrelease->upload_date = $request->upload_date;
+
+        try{
+            $pressrelease->save();
+            if($request->hasFile('press_release_attachment')){
+                $file = $request->file('press_release_attachment');
+                $path = $file->store('pressrelease');
+
+                $attachment = new Attachment();
+
+                $attachment->name = $file->getClientOriginalName();
+                $attachment->path = $path;
+                $attachment->attachable_id = $pressrelease->id;
+                $attachment->attachable_type = 'App\Models\PressRelease';
+                $attachment->save();
+            }
+            $this->alert('Press release created successfully');
+            return redirect()->route('pressreleases.index');
+
+        }catch(\Exception $e){
+            $this->alert($e->getMessage());
+        }
     }
 
     /**
@@ -61,6 +91,19 @@ class PressReleaseController extends Controller
      */
     public function destroy(PressRelease $pressRelease)
     {
-        //
+
+        dd($pressRelease);
+        
+        try{
+            $pressRelease->delete();
+            $this->alert('Press release deleted successfully');
+            return redirect()->route('pressreleases.index');
+
+        }catch(\Exception $e){
+
+            $this->alert($e->getMessage());
+            return redirect()->back();
+
+        }
     }
 }

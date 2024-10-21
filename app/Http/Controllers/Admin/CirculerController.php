@@ -17,6 +17,7 @@ class CirculerController extends Controller
     public function index()
     {
         $circulers = Circuler::paginate(10);
+
         return view('admin.circulers.index', compact('circulers'));
     }
 
