@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('event_masters', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('`category_id`');
             $table->text('title');
             $table->longText('about_us');
             $table->longText('location');

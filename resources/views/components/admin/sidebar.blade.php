@@ -115,6 +115,48 @@
         </a>
       </li>
       
+      <!-- Sliders -->
+      <li class="menu-item {{ active('sliders.*','active open') }} ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-slideshow"></i>
+          <div data-i18n="Layouts">Slider</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item {{ active('sliders.create')}}">
+            <a href="{{route('sliders.create')}}" class="menu-link">
+              <div data-i18n="Without menu">Add New</div>
+            </a>
+          </li>
+          <li class="menu-item {{ active('sliders.index')}}">
+            <a href="{{route('sliders.index')}}" class="menu-link">
+              <div data-i18n="Without navbar">View All</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      {{-- Publications --}}
+
+      <li class="menu-item {{ active('publications.*','active open') }} ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-printer"></i>
+          <div data-i18n="Layouts">Publications</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item {{ active('publications.create')}}">
+            <a href="{{route('publications.create')}}" class="menu-link">
+              <div data-i18n="Without menu">Add New</div>
+            </a>
+          </li>
+          <li class="menu-item {{ active('publications.index')}}">
+            <a href="{{route('publications.index')}}" class="menu-link">
+              <div data-i18n="Without navbar">View All</div>
+            </a>
+          </li>
+        </ul>
+      </li>
       <!-- Press Release -->
 
       <li class="menu-item {{ active('pressreleases.index')}}">
