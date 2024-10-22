@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PublicationController;
 use App\Http\Controllers\Admin\DocManagerController;
 use App\Http\Controllers\Admin\EventMasterController;
+use App\Http\Controllers\Admin\VehicleReportController;
+use App\Http\Controllers\Admin\AutoComponentController;
 
 // Route::get('/', function () {
 //     return 'Welcome to acma fontend';
@@ -72,4 +74,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     //Event Master 
     Route::resource('eventmasters', EventMasterController::class);
+
+    //Vehicle Report
+    Route::resource('vehicle-reports', VehicleReportController::class);
+
+    // Auto Component routes
+    Route::resource('auto-components', AutoComponentController::class);
 });

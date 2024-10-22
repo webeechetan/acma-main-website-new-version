@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CirculerCategorySeeder::class,
             PublicationCategorySeeder::class,
             GalleryCategorySeeder::class,
+            VehicleReportCategorySeeder::class,
         ]);
     }
 }
