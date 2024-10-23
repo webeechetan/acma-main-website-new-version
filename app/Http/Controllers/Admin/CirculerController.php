@@ -8,17 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\CirculerCategory;
 use App\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
+use App\DataTables\CirculersDataTable; 
 
 class CirculerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CirculersDataTable $dataTable)
     {
-        $circulers = Circuler::paginate(10);
-
-        return view('admin.circulers.index', compact('circulers'));
+        return $dataTable->render('admin.circulers.index');
     }
 
     /**
