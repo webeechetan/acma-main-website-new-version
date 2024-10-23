@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alldocs', function (Blueprint $table) {
+        Schema::create('govt_policies', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
+            $table->unsignedBigInteger('category_id');
+            $table->text('year');
+            $table->text('state');
+            $table->text('policy');
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alldocs');
+        Schema::dropIfExists('govt_policies');
     }
 };

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             CirculerCategorySeeder::class,
             PublicationCategorySeeder::class,
             GalleryCategorySeeder::class,
+            EventMasterSeeder::class,
+            GovtPolicySeeder::class,
         ]);
     }
 }

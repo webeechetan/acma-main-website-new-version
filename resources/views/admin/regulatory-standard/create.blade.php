@@ -4,100 +4,82 @@
     <div class="col-xl">
       <div class="card mb-6">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Edit Event</h5> <small class="text-body float-end">New Event</small>
+          <h5 class="mb-0">Create Regulatory Standard</h5> <small class="text-body float-end"></small>
         </div>
         <div class="card-body">
-          <form method="POST" action="{{ route('event_masters.update',$eventMaster->id) }}" enctype="multipart/form-data">
+          <form method="POST" action="{{ route('regulatory-standard.store') }}" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
+            @method('POST')
             <div class="row">
-                <div class="col-md-6">
+                {{-- date --}}
+                <div class="col-md-6 mt-2">
                     <div class="mb-6">
-                      <label class="form-label" for="">Event Category</label>
-                        <select name="category_id" class="form-select" id="">
-                            @foreach($categories as $category)
-                                @if($eventMaster->category_id == $category->id)
-                                    <option value="{{ $category->id }}" selected> {{ $category->name }}</option>
-                                @else 
-                                    <option value="{{ $category->id }}"> {{ $category->name }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                        @error('category_id')
+                      <label class="form-label" for="">Meeting Date</label>
+                        <input type="date" name="meeting_date" class="form-control" id="" placeholder="" value="{{ old('meeting_date') }}">
+                        @error('meeting_date')
                             <x-error-component :message="$message" />
                         @enderror
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="mb-6">
-                      <label class="form-label" for="">Event Title</label>
-                      <input name="event_title" type="text" class="form-control" id="" placeholder="Title" value="{{ $eventMaster->title }}">
-                        @error('event_title')
+                      <label class="form-label" for="">Meeting Time</label>
+                      <input name="meeting_time" type="text" class="form-control" id="" placeholder="Meeting Time" value="{{old('meeting_time')}}">
+                        @error('meeting_time')
                             <x-error-component :message="$message" />
                         @enderror
                     </div>
                 </div>
                 
-                {{-- date --}}
-                <div class="col-md-6 mt-2">
-                    <div class="mb-6">
-                      <label class="form-label" for="">Event Date</label>
-                        <input type="date" name="event_date" class="form-control" id="" placeholder="" value="{{ $eventMaster->event_date}}">
-                        @error('event_date')
-                            <x-error-component :message="$message" />
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="col-md-6 mt-2">
-                    <div class="mb-6">
-                      <label class="form-label" for="">URL</label>
-                      <input type="text" name="url" class="form-control" id="url" placeholder="URL" value="{{$eventMaster->url}}">
-                        @error('url')
-                            <x-error-component :message="$message" />
-                        @enderror
-                    </div>
-                </div>
 
                 {{-- About us --}}
                 <div class="col-md-12 mt-2">
                     <div class="mb-6">
-                      <label class="form-label" for="">About Us</label>
-                        <textarea name="about_us" id="about_us">{{ $eventMaster->about_us }}</textarea>
-                        @error('about_us')
+                      <label class="form-label" for="">Subject</label>
+                        <textarea name="subject" id="subject">{{ old('subject') }}</textarea>
+                        @error('subject')
                             <x-error-component :message="$message" />
                         @enderror
                     </div>
                 </div>
 
-                {{-- Location --}}
-                <div class="col-md-12 mt-2">
+                <div class="col-md-6 mt-2">
                     <div class="mb-6">
-                      <label class="form-label" for="">Location</label>
-                        <textarea name="location" id="location">{{ $eventMaster->location }}</textarea>
-                        @error('location')
+                      <label class="form-label" for="">Place of Meeting</label>
+                      <input type="text" name="place" class="form-control" id="place" placeholder="place" value="{{old('place')}}">
+                        @error('place')
                             <x-error-component :message="$message" />
                         @enderror
                     </div>
                 </div>
 
-                {{-- attachments --}}
                 <div class="col-md-6 mt-2">
                     <div class="mb-6">
-                      <label class="form-label" for="">Event Image</label>
-                        <input class="form-control" type="file" name="event_attachment" id="event_attachment">
+                      <label class="form-label" for="">Meeting Notice Link</label>
+                      <input type="text" name="meeting_link" class="form-control" id="meeting_link" placeholder="place" value="{{old('meeting_link')}}">
+                        @error('meeting_link')
+                            <x-error-component :message="$message" />
+                        @enderror
                     </div>
                 </div>
 
-                {{-- key words --}}
+
                 <div class="col-md-6 mt-2">
                     <div class="mb-6">
-                      <label class="form-label" for="">How to Get There</label>
-                        <input type="text" name="howto" class="form-control" id="key_words" placeholder="" value="{{ $eventMaster->howto }}">
+                      <label class="form-label" for="">Meeting Minutes Link</label>
+                      <input type="text" name="meeting_minutes" class="form-control" id="meeting_minutes" placeholder="place" value="{{old('meeting_minutes')}}">
+                        @error('meeting_minutes')
+                            <x-error-component :message="$message" />
+                        @enderror
                     </div>
                 </div>
+
+                
+
+               
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Update</button>
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
           </form>
         </div>
       </div>
@@ -140,7 +122,7 @@
     } from 'ckeditor5';
 
     ClassicEditor
-        .create( document.querySelector( '#about_us' ), {
+        .create( document.querySelector( '#subject' ), {
             plugins: [ Essentials, Paragraph, Bold, Italic, Font, List, Indent, IndentBlock, Alignment ],
             toolbar: [
                 'undo', 'redo', '|', 'bold', 'italic', '|',

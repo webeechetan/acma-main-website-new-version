@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PublicationController;
 use App\Http\Controllers\Admin\DocManagerController;
 use App\Http\Controllers\Admin\EventMasterController;
+use App\Http\Controllers\Admin\GovtPolicyController;
+use App\Http\Controllers\Admin\RegulatoryStandardController;
 
 // Route::get('/', function () {
 //     return 'Welcome to acma fontend';
@@ -72,4 +74,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     //Event Master 
     Route::resource('event_masters', EventMasterController::class);
+
+    //Govt Policy 
+    Route::resource('govt-policy', GovtPolicyController::class);
+
+    //Regulatory Standard 
+    Route::resource('regulatory-standard', RegulatoryStandardController::class);
 });

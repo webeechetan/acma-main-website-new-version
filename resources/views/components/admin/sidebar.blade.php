@@ -183,18 +183,62 @@
           </a>
   
           <ul class="menu-sub">
-            <li class="menu-item" {{ active('event_masters.create') }}>
+            <li class="menu-item {{ active('event_masters.create') }}">
               <a href="{{ route('event_masters.create')}}" class="menu-link">
                 <div data-i18n="Without menu">New Event</div>
               </a>
             </li>
-            <li class="menu-item" {{ active('event_masters.index') }}>
+            <li class="menu-item {{ active('event_masters.index') }}">
               <a href="{{ route('event_masters.index')}}" class="menu-link">
                 <div data-i18n="Without navbar">View Event</div>
               </a>
             </li>
           </ul>
         </li>
+
+     
+          <!-- Govt Policy -->
+          <li class="menu-item {{active('govt-policy.*', 'active open')}}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-image"></i>
+              <div data-i18n="Layouts">Govt Policy</div>
+            </a>
+    
+            <ul class="menu-sub">
+              <li class="menu-item {{ active('govt-policy.create') }}">
+                <a href="{{ route('govt-policy.create')}}" class="menu-link">
+                  <div data-i18n="Without menu">New Policy</div>
+                </a>
+              </li>
+              <li class="menu-item {{ active('govt-policy.index')}}">
+                <a href="{{ route('govt-policy.index')}}" class="menu-link">
+                  <div data-i18n="Without navbar">All Policy</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+      
+           <!-- Regulatory Standard-->
+           <li class="menu-item {{active('regulatory-standard.*', 'active open')}}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-image"></i>
+              <div data-i18n="Layouts">Regulatory Standards</div>
+            </a>
+    
+            <ul class="menu-sub">
+              <li class="menu-item {{ active('regulatory-standard.create') }}">
+                <a href="{{ route('regulatory-standard.create')}}" class="menu-link">
+                  <div data-i18n="Without menu">Add New</div>
+                </a>
+              </li>
+              <li class="menu-item {{ active('regulatory-standard.index')}}">
+                <a href="{{ route('regulatory-standard.index')}}" class="menu-link">
+                  <div data-i18n="Without navbar">View All</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+      
   
     </ul>
   </aside>

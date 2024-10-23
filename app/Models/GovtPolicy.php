@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Attachment;
+use App\Models\Category;
 
-class Alldoc extends Model
+class GovtPolicy extends Model
 {
     use HasFactory;
+
+    public static function categories()
+    {
+        return Category::where('categorizable_type', 'App\Models\GovtPolicy')->get();
+    }
 
     public function attachment()
     {
@@ -16,4 +21,8 @@ class Alldoc extends Model
         return $this->morphOne(Attachment::class, 'attachable');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
