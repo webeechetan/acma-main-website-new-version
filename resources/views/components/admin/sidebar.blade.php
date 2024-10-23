@@ -15,12 +15,12 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      {{-- <li class="menu-item {{ active('admin.dashboard') }}">
+      <li class="menu-item {{ active('admin.dashboard') }}">
         <a href="{{ route('admin.dashboard') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
         </a>
-      </li> --}}
+      </li> 
 
       
       <!-- ECMinutes -->
@@ -200,7 +200,7 @@
           <!-- Govt Policy -->
           <li class="menu-item {{active('govt-policy.*', 'active open')}}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-image"></i>
+              <i class='menu-icon tf-icon  bx bxs-analyse'></i>
               <div data-i18n="Layouts">Govt Policy</div>
             </a>
     
@@ -239,6 +239,47 @@
             </ul>
           </li>
       
+        <!-- Vehicle Report -->
+        <li class="menu-item {{ active('vehicle-reports.*','active open') }} ">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-car"></i>
+            <div data-i18n="Layouts">Vehicle Report</div>
+          </a>
+  
+          <ul class="menu-sub">
+            <li class="menu-item {{ active('vehicle-reports.create') }}" >
+              <a href="{{ route('vehicle-reports.create')}}" class="menu-link">
+                <div data-i18n="Without menu">New Report</div>
+              </a>
+            </li>
+            <li class="menu-item {{ active('vehicle-reports.index') }}">
+              <a href="{{ route('vehicle-reports.index')}}" class="menu-link">
+                <div data-i18n="Without navbar">View Report</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Auto Components -->
+        <li class="menu-item {{ active('auto-components.*','active open') }} ">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bxs-component"></i>
+            <div data-i18n="Layouts">Auto Component</div>
+          </a>
+  
+          <ul class="menu-sub">
+            <li class="menu-item {{ active('auto-components.create') }}" >
+              <a href="{{ route('auto-components.create')}}" class="menu-link">
+                <div data-i18n="Without menu">New Component</div>
+              </a>
+            </li>
+            <li class="menu-item {{ active('auto-components.index') }}">
+              <a href="{{ route('auto-components.index')}}" class="menu-link">
+                <div data-i18n="Without navbar">View Component</div>
+              </a>
+            </li>
+          </ul>
+        </li>
   
     </ul>
   </aside>

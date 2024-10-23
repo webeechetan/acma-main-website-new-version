@@ -18,8 +18,12 @@ class DatabaseSeeder extends Seeder
             CirculerCategorySeeder::class,
             PublicationCategorySeeder::class,
             GalleryCategorySeeder::class,
+<<<<<<< HEAD
             EventMasterSeeder::class,
             GovtPolicySeeder::class,
+=======
+            VehicleReportCategorySeeder::class,
+>>>>>>> 9310f61bcc63aa84cf9f135ff43e798166556155
         ]);
     }
 }
