@@ -7,7 +7,7 @@
           <h5 class="mb-0">Create Event</h5> <small class="text-body float-end">New Event</small>
         </div>
         <div class="card-body">
-          <form method="POST" action="{{ route('eventmasters.store') }}" enctype="multipart/form-data">
+          <form method="POST" action="{{ route('event_masters.store') }}" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="row">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Send</button>
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
           </form>
         </div>
       </div>

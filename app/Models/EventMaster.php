@@ -22,9 +22,9 @@ class EventMaster extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function attachments()
+    public function attachment()
     {
-        return $this->morphMany(Attachment::class, 'attachable');
+        return $this->morphOne(Attachment::class, 'attachable');
     }
 
 }

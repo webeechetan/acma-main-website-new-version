@@ -67,7 +67,7 @@ class EventMasterController extends Controller
             }
 
             $this->alert('Event saved successfully');
-            return redirect()->route('eventmasters.index');
+            return redirect()->route('event-masters.index');
         }catch(\Exception $e){
             $this->alert($e->getMessage());
             return redirect()->back();
@@ -87,7 +87,10 @@ class EventMasterController extends Controller
      */
     public function edit(EventMaster $eventMaster)
     {
-        //
+
+      
+        $categories = EventMaster::categories();
+        return view('admin.events.edit',compact('categories','eventMaster'));
     }
 
     /**
@@ -95,7 +98,46 @@ class EventMasterController extends Controller
      */
     public function update(Request $request, EventMaster $eventMaster)
     {
-        //
+
+        
+        $request->validate([
+            
+            'event_title' => 'required',
+            'event_date' => 'required',
+            
+        ]);
+
+        $eventMaster->category_id = $request->category_id;
+        $eventMaster->title = $request->event_title;
+        $eventMaster->event_date = $request->event_date;
+        $eventMaster->url = $request->url;
+        $eventMaster->about_us = $request->about_us;
+        $eventMaster->location = $request->location;
+        $eventMaster->howto = $request->howto;
+
+        try{
+            $eventMaster->save();
+            // save attachment
+            if($request->hasFile('event_attachment')){
+
+
+                $file = $request->file('event_attachment');
+                $path = $file->store('allevents');
+
+                $attachment = new Attachment();
+                $attachment->name = $file->getClientOriginalName();
+                $attachment->path = $path;
+                $attachment->attachable_id = $event->id;
+                $attachment->attachable_type = 'App\Models\EventMaster';
+                $attachment->save();
+            }
+
+            $this->alert('Event updated successfully');
+            return redirect()->route('event_masters.index');
+        }catch(\Exception $e){
+            $this->alert($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     /**
@@ -103,6 +145,20 @@ class EventMasterController extends Controller
      */
     public function destroy(EventMaster $eventMaster)
     {
-        dd('deleting');
+
+       
+        try{
+
+            if ($eventMaster->attachment) {
+                Storage::delete($eventMaster->attachment->path); 
+                $eventMaster->attachment->delete();
+            }
+            $eventMaster->delete();
+            $this->alert('Event deleted successfully');
+            return redirect()->route('event_masters.index');
+        }catch(\Exception $e){
+            $this->alert($e->getMessage());
+            return redirect()->back();
+        }
     }
 }

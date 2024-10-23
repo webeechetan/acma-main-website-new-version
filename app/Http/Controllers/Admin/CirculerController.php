@@ -140,6 +140,7 @@ class CirculerController extends Controller
      */
     public function destroy(Circuler $circuler)
     {
+
         try{
             foreach($circuler->attachments as $attachment){
                 Storage::delete($attachment->path);
