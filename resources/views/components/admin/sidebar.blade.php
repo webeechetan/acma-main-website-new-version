@@ -105,15 +105,6 @@
           </li>
         </ul>
       </li>
-
-      <!-- All Doc -->
-
-      <li class="menu-item {{ active('alldocs.index') }}">
-        <a href="{{ route('alldocs.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-folder-open"></i>
-          <div data-i18n="Analytics">All Docs</div>
-        </a>
-      </li>
       
       <!-- Sliders -->
       <li class="menu-item {{ active('sliders.*','active open') }} ">

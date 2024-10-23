@@ -58,10 +58,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('alldocs', AlldocController::class);
 
     // Press Coverage
-    Route::resource('presscoverages', PressCoverageController::class);
-
-    // Press Release
-    Route::resource('pressrelease', AlldocController::class);
+    Route::resource('presscoverages', PressCoverageController::class);    
 
     // Slider routes
     Route::resource('sliders', SliderController::class);
@@ -69,6 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Publications routes
     Route::resource('publications', PublicationController::class);
     
+    // Press Release
     Route::resource('pressreleases', PressReleaseController::class);
 
     //Doc Manager
