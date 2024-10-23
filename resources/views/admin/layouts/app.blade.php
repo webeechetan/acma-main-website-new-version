@@ -170,6 +170,8 @@
     <script src="{{ asset('backend') }}/assets/js/main.js"></script>
     {{-- Toast --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    {{-- vite --}}
+
     @stack('scripts')
     @if(session()->has('alert'))
         @php
